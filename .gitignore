@@ -1,0 +1,5 @@
+*.swp
+*/__pycache__
+*/*/__pycache__
+*.pyc
+*39.pyc
