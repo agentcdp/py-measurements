@@ -4,6 +4,8 @@
 
     function update_waist(waist){
         const el_waist = document.getElementById('id_waist');
+        const waist_input = document.getElementById('id_update_waist');
+        waist_input.value = waist;
         el_waist.innerHTML = waist + " cm";        
     }
 
