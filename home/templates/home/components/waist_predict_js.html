@@ -1,0 +1,44 @@
+<script type="text/javascript">
+
+    const inputs = document.getElementsByClassName('user-input');
+
+    function update_waist(waist){
+        const el_waist = document.getElementById('id_waist');
+        el_waist.innerHTML = waist + " cm";        
+    }
+
+    function get_waist(height, age, weight){
+        var url = "/get_waist/" + "?height=" + height + "&age=" + age + "&weight=" + weight;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (message) {
+                const waist = message.waist;
+                update_waist(waist)
+            },
+            error: function (error) {
+                alert("An error occured!");
+            }
+        });
+    }
+
+  
+   
+
+    for (var i = 0; i < inputs.length; i++) { 
+        inputs[i].addEventListener("change", (e) => {
+            const height_model = document.getElementById('id_height');
+            const age_model = document.getElementById('id_age');
+            const weight_model = document.getElementById('id_weight');
+
+            if(height_model.value?.length > 0 && age_model.value?.length > 0 && weight_model.value?.length > 0 ){
+                get_waist(height_model.value, age_model.value, weight_model.value)
+            }
+
+        });
+
+    }
+
+</script>
+
+<!-- waist -->

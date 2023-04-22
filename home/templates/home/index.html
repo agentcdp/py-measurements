@@ -1,0 +1,74 @@
+{% extends get_master_template %}
+{% load static %}
+{% block extra_css %}
+    <link href="{% static 'style.css' %}" rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+{% endblock %}
+{% block content %}
+ 
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        {% include 'home/components/header_nav.html' %}
+        <main class="px-2">
+
+        <p class="h3 text-white">Please enter height, age and weight</p>
+    
+        <div class="d-flex justify-content-center px-3 py-3">
+            <div class="mb-3 px-3 py-2">
+                <label for="id_height" class="form-label text-white">Height</label>
+                <input type="number" class="form-control user-input" 
+                value="{{page_object.height}}" id="id_height" aria-describedby="heightHelp">
+                <div id="heightHelp" class="form-text">Your Height</div>
+            </div>
+            <div class="mb-3 px-3 py-2">
+                <label for="id_age" class="form-label text-white">Age</label>
+                <input type="number" class="form-control user-input" 
+                value="{{page_object.age}}" id="id_age" aria-describedby="ageHelp">
+                <div id="ageHelp" class="form-text">Your Age</div>
+            </div>
+            <div class="mb-3 px-3 py-2">
+                <label for="id_weight" class="form-label text-white">Weight</label>
+                <input type="number" class="form-control user-input" 
+                value="{{page_object.height}}" id="id_weight" aria-describedby="weightHelp">
+                <div id="weightHelp" class="form-text">Your weight</div>
+            </div>
+        </div>
+
+        <p class="text-white" >This application aims to estimate waist size based on input data. 
+            While it may not be entirely accurate initially, with consistent input of correct information over time, 
+            it becomes increasingly intelligent in predicting the correct waist size. </p>
+
+        <div class="waist-result-panel">
+            <h1 class="mt-4 text-white animate__animated animate__bounceIn">Waist: 
+                <span class="text-success" id="id_waist">{{page_object.waist}} cm</span></h1> 
+             <p><a id="updateWaistLink" href="javascript:void(0)" class="update-waist-link link-light">Not your waist?</a></p>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="update-waist-panel animate__animated animate__bounceIn">
+                <div class="mb-3">
+                    <label for="id_update_waist" class="form-label text-white">Your waist (cm)</label>
+                    <input type="email" class="form-control user-input-waist" 
+                    value="{{page_object.waist}}"
+                    id="id_update_waist" aria-describedby="updateWaistHelp">
+                    <div id="updateWaistHelp" class="form-text">Thank you for your contribution</div>
+                </div>
+                <div data-bs-theme="dark">
+                    <button type="button" class="btn btn-sm btn-warning" onclick="updateWaistConfirm()">Update</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="closeWaistConfirm()">Cancel</button>
+                </div>
+            </div>
+    
+
+        </div>
+
+       
+ 
+        </main>
+        {% include 'home/components/footer.html' %}
+    </div>
+
+{% endblock %}
+{% block extra_js %}
+    {% include 'home/components/waist_predict_js.html' %}
+    {% include 'home/components/update_waist_js.html' %}
+{% endblock %}

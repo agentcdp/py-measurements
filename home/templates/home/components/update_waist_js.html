@@ -1,0 +1,86 @@
+<script type="text/javascript">
+
+    const updateLinkButton = document.getElementById('updateWaistLink');
+
+    updateLinkButton.addEventListener("click", (e) => {   
+        showHideWaistUpdate("block", "none");
+        enableDisableInputs(true);
+    });
+
+    function showHideWaistUpdate(display1, display2){
+        var els = document.getElementsByClassName("update-waist-panel"); 
+        if(els?.length > 0){
+			for(let i=0; i < els.length; i++){
+				els[i].style.display = display1;
+			}
+		}
+        var els2 = document.getElementsByClassName("waist-result-panel"); 
+        if(els2?.length > 0){
+			for(let i=0; i < els2.length; i++){
+				els2[i].style.display = display2;
+			}
+		}
+    };
+
+    function enableDisableInputs(disable){
+        const inputs = document.getElementsByClassName('user-input');
+        for (var i = 0; i < inputs.length; i++) { 
+            if(disable === true){
+                inputs[i].setAttribute("disabled", true);
+            } else {
+                inputs[i].removeAttribute("disabled");
+            }
+        }
+    }
+
+
+    function post_waist(height, age, weight, waist){
+        var url = "/update_waist/";
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {"X-CSRFToken": '{{csrf_token}}'},
+            data: {
+                "height": height,
+                "age": age,
+                "weight": weight,
+                "waist": waist
+            },
+            dataType: 'json',
+            success: function (message) {
+                showHideWaistUpdate("none", "block");
+                enableDisableInputs(false);
+                update_waist(waist)
+            },
+            error: function (error) {
+                alert("An error occured!");
+            }
+        });
+    
+    }
+
+   
+    function updateWaistConfirm(){
+        const height = document.getElementById('id_height').value;
+        const age = document.getElementById('id_age').value;
+        const weight = document.getElementById('id_weight').value;
+        const waist = document.getElementById('id_update_waist').value;
+        post_waist(height, age, weight, waist);
+    }
+
+    function closeWaistConfirm(){
+        showHideWaistUpdate("none", "block");
+        enableDisableInputs(false);
+    }
+
+
+   
+
+
+
+
+
+
+
+
+</script>
