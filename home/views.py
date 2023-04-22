@@ -4,7 +4,7 @@ from django.http import JsonResponse, Http404
 from home.utils import WaistSizePredictor
 from home.models import Measurement 
 
-
+# Get data from database for predict model
 def get_measurement_data():
     measurements = Measurement.objects.all() 
     data = []
@@ -13,12 +13,14 @@ def get_measurement_data():
         data.append(payload)
     return data
 
+# check form inputs or raise error
 def validate_float_inputs(value):
     try:
         float(value)
     except:
         raise Http404
 
+# Get waist detail
 def get_waist(request):
     if request.method == "GET":
         height, age, weight = request.GET.get('height', ''), request.GET.get('age', ''), request.GET.get('weight', '')
@@ -32,13 +34,17 @@ def get_waist(request):
             raise Http404     
     else:
         raise Http404
-    
+        
+# Update waist
 def update_waist(request):
     if request.method == "POST":
+        # get post data
         height, age, weight, waist = request.POST.get('height', ''), request.POST.get('age', ''), request.POST.get('weight', ''), request.POST.get('waist', '')
+        # Validate waist
         validate_float_inputs(height), validate_float_inputs(age), validate_float_inputs(weight), validate_float_inputs(waist)
-        print(height, age, weight, waist )
+        
         try:
+            # Create new object
             m, created = Measurement.objects.get_or_create(height=height, weight=weight, age=age, waist=waist)
             if created:
                 m.user_created = True
@@ -49,7 +55,7 @@ def update_waist(request):
     else:
         raise Http404
         
-
+# Index page
 class Index(TemplateView):
     template_name = "home/index.html"
 
