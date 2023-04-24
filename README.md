@@ -8,7 +8,7 @@ with consistent input of correct information over time, it becomes increasingly 
 
 cd ./py-measurements
 
-sud chmod +x entrypoint.sh                                     # This is important
+sudo chmod +x entrypoint.sh
 
 docker-compose up -d
 
