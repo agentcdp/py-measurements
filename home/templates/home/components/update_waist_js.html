@@ -1,12 +1,15 @@
 <script type="text/javascript">
 
+    // Getting the update button
     const updateLinkButton = document.getElementById('updateWaistLink');
 
+	// setting up click event
     updateLinkButton.addEventListener("click", (e) => {   
         showHideWaistUpdate("block", "none");
         enableDisableInputs(true);
     });
 
+	// hide or unhide sections based on update request 
     function showHideWaistUpdate(display1, display2){
         var els = document.getElementsByClassName("update-waist-panel"); 
         if(els?.length > 0){
@@ -21,7 +24,8 @@
 			}
 		}
     };
-
+	
+	// disable inputs while updating 
     function enableDisableInputs(disable){
         const inputs = document.getElementsByClassName('user-input');
         for (var i = 0; i < inputs.length; i++) { 
@@ -33,7 +37,7 @@
         }
     }
 
-
+    // update waist on request 
     function post_waist(height, age, weight, waist){
         var url = "/update_waist/";
         $.ajax({
@@ -59,7 +63,7 @@
     
     }
 
-   
+   // update button clicked
     function updateWaistConfirm(){
         const height = document.getElementById('id_height').value;
         const age = document.getElementById('id_age').value;
@@ -67,7 +71,8 @@
         const waist = document.getElementById('id_update_waist').value;
         post_waist(height, age, weight, waist);
     }
-
+	
+	// close button clicked
     function closeWaistConfirm(){
         showHideWaistUpdate("none", "block");
         enableDisableInputs(false);
