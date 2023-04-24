@@ -1,7 +1,9 @@
 <script type="text/javascript">
-
+    
+    // getting the inputs 
     const inputs = document.getElementsByClassName('user-input');
-
+    
+    // update data
     function update_waist(waist){
         const el_waist = document.getElementById('id_waist');
         const waist_input = document.getElementById('id_update_waist');
@@ -9,6 +11,7 @@
         el_waist.innerHTML = waist + " cm";        
     }
 
+    // get waist data
     function get_waist(height, age, weight){
         var url = "/get_waist/" + "?height=" + height + "&age=" + age + "&weight=" + weight;
         $.ajax({
@@ -26,7 +29,7 @@
 
   
    
-
+    // event listner for input change
     for (var i = 0; i < inputs.length; i++) { 
         inputs[i].addEventListener("change", (e) => {
             const height_model = document.getElementById('id_height');
@@ -43,4 +46,3 @@
 
 </script>
 
-<!-- waist -->
