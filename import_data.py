@@ -8,12 +8,14 @@ from home.models import Measurement
 # Reading file
 with open("measurements.csv", newline='', encoding='utf-8') as csvfileRead:
     response_reader = csv.reader(csvfileRead, delimiter=',')
+    # skipping first row for header
     next(response_reader)
     sl = 1
     for row in response_reader:
         sl += 1
         try:
             height, weight, age, waist = row[0], row[1], row[2], row[3]
+            # creating new object
             obj = Measurement(height=height, weight=weight, age=age, waist=waist)
             obj.save()
             print("Created new object: ", obj)
