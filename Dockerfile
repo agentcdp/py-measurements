@@ -7,3 +7,7 @@ WORKDIR /app
 
 # Requirements installation
 RUN pip install -r requirements.txt
+
+# Running the app
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
