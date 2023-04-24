@@ -6,6 +6,8 @@ with consistent input of correct information over time, it becomes increasingly 
 
 # RUN on Docker
 
+cd ./py-measurements
+
 docker-compose up -d
 
 "http://localhost:8000/" open on browser to access to app
