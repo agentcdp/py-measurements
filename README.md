@@ -6,6 +6,9 @@ with consistent input of correct information over time, it becomes increasingly 
 # Demo
 http://139.84.138.247:8000/
 
+# More
+check documentation.pdf for more info
+
 # RUN on Docker on Linux machine
 
 cd ./py-measurements
