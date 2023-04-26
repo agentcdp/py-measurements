@@ -6,7 +6,7 @@ with consistent input of correct information over time, it becomes increasingly 
 # Demo
 http://139.84.138.247:8000/
 
-<img src="https://github.com/agentcdp/py-measurements/blob/main/demo.png?raw=true">
+<img height="400px" width="auto" src="https://github.com/agentcdp/py-measurements/blob/main/demo.png?raw=true">
 
 # More
 check documentation.pdf for more info
