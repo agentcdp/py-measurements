@@ -4,8 +4,6 @@ Py Measurement aims to estimate waist size based on input data. While it may not
 with consistent input of correct information over time, it becomes increasingly intelligent in predicting the correct waist size. 
 
 # Demo
-http://139.84.138.247:8000/
-
 <img height="400px" width="auto" src="https://github.com/agentcdp/py-measurements/blob/main/demo.png?raw=true">
 
 # More
